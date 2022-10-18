@@ -822,7 +822,6 @@ function(create_symlink DEST_FILE)
     # If we don't need to symlink something that's coming from a build target,
     # we can go ahead and symlink/copy at configure time.
     if(CMAKE_HOST_WIN32 AND NOT CYGWIN)
-    message(WARNING "S_FILE ${S_FILE} ${DEST_FILE}")
       execute_process(COMMAND "${CMAKE_COMMAND}"
                               -E copy_if_different
                               ${S_FILE} ${DEST_FILE}
@@ -847,7 +846,6 @@ function(create_symlink DEST_FILE)
                                  $<TARGET_LINKER_FILE_NAME:${S_TARGET}>
                                  $<TARGET_LINKER_FILE_DIR:${S_TARGET}>/${DEST_FILE})
     else()
-    message(WARNING "S_TARGET ${S_TARGET} ${DEST_FILE}")
       add_custom_command(TARGET ${S_TARGET}
                          POST_BUILD
                          COMMAND "${CMAKE_COMMAND}"
